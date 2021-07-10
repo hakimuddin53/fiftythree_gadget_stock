@@ -12,9 +12,7 @@ class AppDrawer extends StatelessWidget {
           _createDrawerItem(
             icon: Icons.contacts,
             text: 'Dealer',
-            onTap: () =>
-                //  Navigator.pushReplacementNamed(context, Routes.contacts))
-                Navigator.of(context).push(
+            onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 settings: RouteSettings(name: "/Stock"),
                 builder: (context) => Stock(),
@@ -40,7 +38,10 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
           ),
-          Divider(),
+          Divider(
+            color: Colors.teal.shade100,
+            thickness: 1.0,
+          ),
           _createDrawerItem(
             icon: Icons.note,
             text: 'Notes',
@@ -72,7 +73,7 @@ class AppDrawer extends StatelessWidget {
           Positioned(
               bottom: 12.0,
               left: 16.0,
-              child: Text("Flutter Step-by-Step",
+              child: Text("53 Gadget",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 20.0,

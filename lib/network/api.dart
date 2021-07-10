@@ -1,6 +1,8 @@
-import 'package:fiftythree_gadget_stock/utils/app_config.dart';
-import 'package:dio/dio.dart';
 import 'dart:convert';
+
+import 'package:dio/dio.dart';
+import 'package:fiftythree_gadget_stock/utils/app_config.dart';
+
 import 'api_client.dart';
 
 class Api {
