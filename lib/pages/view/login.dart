@@ -1,4 +1,4 @@
-import 'package:fiftythree_gadget_stock/pages/stock.dart';
+import 'package:fiftythree_gadget_stock/pages/view/stock.dart';
 import 'package:flutter/material.dart';
 
 import 'base_page_state.dart';

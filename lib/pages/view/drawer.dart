@@ -1,4 +1,6 @@
-import 'package:fiftythree_gadget_stock/pages/stock.dart';
+import 'package:fiftythree_gadget_stock/pages/view/purchase_legder.dart';
+import 'package:fiftythree_gadget_stock/pages/view/sales_ledger.dart';
+import 'package:fiftythree_gadget_stock/pages/view/stock.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -9,32 +11,32 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           _createHeader(),
-          _createDrawerItem(
-            icon: Icons.contacts,
-            text: 'Dealer',
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                settings: RouteSettings(name: "/Stock"),
-                builder: (context) => Stock(),
-              ),
-            ),
-          ),
+          // _createDrawerItem(
+          //   icon: Icons.contacts,
+          //   text: 'Dealer',
+          //   onTap: () => Navigator.of(context).push(
+          //     MaterialPageRoute(
+          //       settings: RouteSettings(name: "/Stock"),
+          //       builder: (context) => Stock(),
+          //     ),
+          //   ),
+          // ),
           _createDrawerItem(
               icon: Icons.event,
-              text: 'Salesman',
+              text: 'Purchase Ledger',
               onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      settings: RouteSettings(name: "/Stock"),
-                      builder: (context) => Stock(),
+                      settings: RouteSettings(name: "/PurchaseLedger"),
+                      builder: (context) => PurchaseLedger(),
                     ),
                   )),
           _createDrawerItem(
             icon: Icons.note,
-            text: 'Notes',
+            text: 'Sales Ledger',
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
-                settings: RouteSettings(name: "/Stock"),
-                builder: (context) => Stock(),
+                settings: RouteSettings(name: "/MyHomePage"),
+                builder: (context) => MyHomePage(),
               ),
             ),
           ),
@@ -44,7 +46,7 @@ class AppDrawer extends StatelessWidget {
           ),
           _createDrawerItem(
             icon: Icons.note,
-            text: 'Notes',
+            text: 'Logout',
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 settings: RouteSettings(name: "/Stock"),

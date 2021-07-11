@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../components/loading_view.dart';
+import '../../components/loading_view.dart';
 
 abstract class BasePageState<T extends StatefulWidget> extends State<T>
     with WidgetsBindingObserver {
