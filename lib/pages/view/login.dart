@@ -1,3 +1,6 @@
+import 'package:fiftythree_gadget_stock/components/custom_snackbar.dart';
+import 'package:fiftythree_gadget_stock/data/auth_repo.dart';
+import 'package:fiftythree_gadget_stock/data/result.dart';
 import 'package:fiftythree_gadget_stock/pages/view/stock.dart';
 import 'package:flutter/material.dart';
 
@@ -162,32 +165,32 @@ class _LoginState extends BasePageState<Login> {
 
       FocusScope.of(context).requestFocus(FocusNode());
 
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          settings: RouteSettings(name: "/Stock"),
-          builder: (context) => Stock(),
-        ),
-      );
+      // Navigator.of(context).push(
+      //   MaterialPageRoute(
+      //     settings: RouteSettings(name: "/Stock"),
+      //     builder: (context) => Stock(),
+      //   ),
+      // );
 
-      // Result result = await AuthRepo().login(_email, _password);
-      //
-      // if (result.isSuccess) {
-      //   // Navigator.push(context, MaterialPageRoute(builder: (_) => MyHome()));
-      //
-      //   // Navigator.of(context).push(
-      //   //     MaterialPageRoute(
-      //   //         settings: RouteSettings(name: "/MyHome"),
-      //   //         builder: (context) => MyHome(),
-      //
-      //   Navigator.of(context).push(
-      //     MaterialPageRoute(
-      //       settings: RouteSettings(name: "/Stock"),
-      //       builder: (context) => Stock(),
-      //     ),
-      //   );
-      // } else {
-      //   CustomSnackbar().show(context, "Login Failed!!", MessageType.ERROR);
-      // }
+      Result result = await AuthRepo().login(_email, _password);
+
+      if (result.isSuccess) {
+        // Navigator.push(context, MaterialPageRoute(builder: (_) => MyHome()));
+
+        // Navigator.of(context).push(
+        //     MaterialPageRoute(
+        //         settings: RouteSettings(name: "/MyHome"),
+        //         builder: (context) => MyHome(),
+
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            settings: RouteSettings(name: "/Stock"),
+            builder: (context) => Stock(),
+          ),
+        );
+      } else {
+        CustomSnackbar().show(context, "Login Failed!!", MessageType.ERROR);
+      }
       showLoadingView(false);
     }
   }

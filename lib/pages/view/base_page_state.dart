@@ -63,6 +63,10 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
   //   locale = await UserRepo().getLocale();
   // }
 
+  void fieldFocusOn(BuildContext context, FocusNode nextFocus) {
+    FocusScope.of(context).requestFocus(nextFocus);
+  }
+
   void showLoadingView(bool show) {
     setState(() {
       absorbing = show;
@@ -70,7 +74,7 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
       if (show) {
         loadingWidget = LoadingView(
           'Loading..',
-          iconColors: Colors.orange,
+          iconColors: Colors.green,
           backgroundColor: Colors.white,
           textSize: 12,
         );

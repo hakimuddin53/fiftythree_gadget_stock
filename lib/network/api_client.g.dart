@@ -22,10 +22,25 @@ class _ApiClient implements ApiClient {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<LoginResponseModel>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, 'api/login/signin',
+                .compose(_dio.options, 'api/user/signin',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = LoginResponseModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<PurchaseTypeResponseModel> getPurchaseType() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<PurchaseTypeResponseModel>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'api/purchasetype/getPurchasetype',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = PurchaseTypeResponseModel.fromJson(_result.data!);
     return value;
   }
 

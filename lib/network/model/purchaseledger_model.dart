@@ -30,23 +30,20 @@ class PurchaseLedger extends Object {
   @JsonKey(name: 'Id')
   String id;
 
-  @JsonKey(name: 'Imei_Number')
-  String imeiNumber;
-
-  @JsonKey(name: 'Date')
-  String date;
-
-  @JsonKey(name: 'Type')
-  String type;
+  @JsonKey(name: 'PurchaseTypeId')
+  String purchaseTypeId;
 
   @JsonKey(name: 'Pv_Ref')
   String pvRef;
 
-  @JsonKey(name: 'Dealer')
-  String dealer;
+  @JsonKey(name: 'DealerId')
+  String dealerId;
 
   @JsonKey(name: 'Dealer_Inv_Ref')
   String dealerInvRef;
+
+  @JsonKey(name: 'Item_Description')
+  String itemDescription;
 
   @JsonKey(name: 'Amount')
   String amount;
@@ -54,38 +51,8 @@ class PurchaseLedger extends Object {
   @JsonKey(name: 'Units')
   int units;
 
-  @JsonKey(name: 'Item_Description')
-  String itemDescription;
-
   @JsonKey(name: 'Condition')
   String condition;
-
-  @JsonKey(name: 'Cost_Price')
-  String costPrice;
-
-  @JsonKey(name: 'Retail_Price')
-  String retailPrice;
-
-  @JsonKey(name: 'Dealer_Price')
-  String dealerPrice;
-
-  @JsonKey(name: 'Phone_Model')
-  String phoneModel;
-
-  @JsonKey(name: 'Colour')
-  String colour;
-
-  @JsonKey(name: 'Storage')
-  String storage;
-
-  @JsonKey(name: 'IsLock')
-  bool isLock;
-
-  @JsonKey(name: 'InWarranty')
-  bool inWarranty;
-
-  @JsonKey(name: 'WarrantyExpiryDate')
-  String warrantyExpiryDate;
 
   @JsonKey(name: 'Remarks')
   String remarks;
@@ -107,25 +74,14 @@ class PurchaseLedger extends Object {
 
   PurchaseLedger(
       this.id,
-      this.imeiNumber,
-      this.date,
-      this.type,
+      this.purchaseTypeId,
       this.pvRef,
-      this.dealer,
+      this.dealerId,
       this.dealerInvRef,
       this.amount,
       this.units,
       this.itemDescription,
       this.condition,
-      this.costPrice,
-      this.retailPrice,
-      this.dealerPrice,
-      this.phoneModel,
-      this.colour,
-      this.storage,
-      this.isLock,
-      this.inWarranty,
-      this.warrantyExpiryDate,
       this.remarks,
       this.isActive,
       this.createdDate,

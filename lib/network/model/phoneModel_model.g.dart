@@ -1,39 +1,33 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'purchaseledger_model.dart';
+part of 'phoneModel_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-PurchaseLedgerResponseModel _$PurchaseLedgerResponseModelFromJson(
+PhoneModelResponseModel _$PhoneModelResponseModelFromJson(
     Map<String, dynamic> json) {
-  return PurchaseLedgerResponseModel(
+  return PhoneModelResponseModel(
     json['message'] as String,
     json['result_code'] as String,
     json['result_description'] as String,
   );
 }
 
-Map<String, dynamic> _$PurchaseLedgerResponseModelToJson(
-        PurchaseLedgerResponseModel instance) =>
+Map<String, dynamic> _$PhoneModelResponseModelToJson(
+        PhoneModelResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
       'result_code': instance.resultCode,
       'result_description': instance.resultDescription,
     };
 
-PurchaseLedger _$PurchaseLedgerFromJson(Map<String, dynamic> json) {
-  return PurchaseLedger(
+PhoneModel _$PhoneModelFromJson(Map<String, dynamic> json) {
+  return PhoneModel(
     json['Id'] as String,
-    json['PurchaseTypeId'] as String,
-    json['Pv_Ref'] as String,
-    json['DealerId'] as String,
-    json['Dealer_Inv_Ref'] as String,
-    json['Amount'] as String,
-    json['Units'] as int,
-    json['Item_Description'] as String,
-    json['Condition'] as String,
+    json['Name'] as String,
+    json['Description'] as String,
     json['Remarks'] as String,
     json['isActive'] as bool,
     json['createdDate'] as String,
@@ -43,17 +37,11 @@ PurchaseLedger _$PurchaseLedgerFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$PurchaseLedgerToJson(PurchaseLedger instance) =>
+Map<String, dynamic> _$PhoneModelToJson(PhoneModel instance) =>
     <String, dynamic>{
       'Id': instance.id,
-      'PurchaseTypeId': instance.purchaseTypeId,
-      'Pv_Ref': instance.pvRef,
-      'DealerId': instance.dealerId,
-      'Dealer_Inv_Ref': instance.dealerInvRef,
-      'Item_Description': instance.itemDescription,
-      'Amount': instance.amount,
-      'Units': instance.units,
-      'Condition': instance.condition,
+      'Name': instance.name,
+      'Description': instance.description,
       'Remarks': instance.remarks,
       'isActive': instance.isActive,
       'createdDate': instance.createdDate,
