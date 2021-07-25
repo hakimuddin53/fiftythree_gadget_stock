@@ -4,7 +4,7 @@ class AppConfig {
     // return "http://192.168.0.130:153/";
 
     //return "https://abx360api.abxexpress.com.my/";
-    return "http://localhost/FiftyThreeGadgetAPI/";
+    return "http://192.168.0.180//FiftyThreeGadgetAPI/";
   }
 
   static int connectTimeout() {

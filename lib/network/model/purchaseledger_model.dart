@@ -1,3 +1,4 @@
+import 'package:fiftythree_gadget_stock/network/model/stock_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'purchaseledger_model.g.dart';
@@ -27,34 +28,37 @@ class PurchaseLedgerResponseModel extends Object {
 
 @JsonSerializable()
 class PurchaseLedger extends Object {
-  @JsonKey(name: 'Id')
+  @JsonKey(name: 'id')
   String id;
 
-  @JsonKey(name: 'PurchaseTypeId')
+  @JsonKey(name: 'purchaseTypeId')
   String purchaseTypeId;
 
-  @JsonKey(name: 'Pv_Ref')
+  @JsonKey(name: 'pv_Ref')
   String pvRef;
 
-  @JsonKey(name: 'DealerId')
+  @JsonKey(name: 'dealerId')
   String dealerId;
 
-  @JsonKey(name: 'Dealer_Inv_Ref')
+  @JsonKey(name: 'dealer_Inv_Ref')
   String dealerInvRef;
 
-  @JsonKey(name: 'Item_Description')
+  @JsonKey(name: 'item_Description')
   String itemDescription;
 
-  @JsonKey(name: 'Amount')
+  @JsonKey(name: 'amount')
   String amount;
 
-  @JsonKey(name: 'Units')
+  @JsonKey(name: 'units')
   int units;
 
-  @JsonKey(name: 'Condition')
+  @JsonKey(name: 'condition')
   String condition;
 
-  @JsonKey(name: 'Remarks')
+  @JsonKey(name: 'stocks')
+  List<Stock> stocks;
+
+  @JsonKey(name: 'remarks')
   String remarks;
 
   @JsonKey(name: 'isActive')
@@ -66,10 +70,10 @@ class PurchaseLedger extends Object {
   @JsonKey(name: 'createdBy')
   String createdBy;
 
-  @JsonKey(name: 'UpdatedDate')
+  @JsonKey(name: 'updatedDate')
   String updatedDate;
 
-  @JsonKey(name: 'UpdatedBy')
+  @JsonKey(name: 'updatedBy')
   String updatedBy;
 
   PurchaseLedger(
@@ -82,6 +86,7 @@ class PurchaseLedger extends Object {
       this.units,
       this.itemDescription,
       this.condition,
+      this.stocks,
       this.remarks,
       this.isActive,
       this.createdDate,

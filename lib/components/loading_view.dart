@@ -14,8 +14,8 @@ class LoadingView extends StatelessWidget {
       {Key? key,
       this.opacity = 1,
       this.backgroundColor = Colors.white,
-      this.iconColors = Colors.orange,
-      this.textColor = Colors.orange,
+      this.iconColors = Colors.green,
+      this.textColor = Colors.green,
       this.textSize = FontSizeConstant.Large})
       : super(key: key);
 

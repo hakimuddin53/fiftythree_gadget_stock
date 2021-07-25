@@ -27,27 +27,31 @@ Map<String, dynamic> _$PurchaseTypeResponseModelToJson(
 
 PurchaseType _$PurchaseTypeFromJson(Map<String, dynamic> json) {
   return PurchaseType(
-    json['Id'] as String,
-    json['Name'] as String,
-    json['Description'] as String,
-    json['Remarks'] as String,
+    json['id'] as int,
+    json['name'] as String,
+    json['description'] as String,
+    (json['purchaseLedgers'] as List<dynamic>)
+        .map((e) => PurchaseLedger.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    json['remarks'] as String?,
     json['isActive'] as bool,
     json['createdDate'] as String,
     json['createdBy'] as String,
-    json['UpdatedDate'] as String,
-    json['UpdatedBy'] as String,
+    json['updatedDate'] as String?,
+    json['updatedBy'] as String?,
   );
 }
 
 Map<String, dynamic> _$PurchaseTypeToJson(PurchaseType instance) =>
     <String, dynamic>{
-      'Id': instance.id,
-      'Name': instance.name,
-      'Description': instance.description,
-      'Remarks': instance.remarks,
+      'id': instance.id,
+      'name': instance.name,
+      'description': instance.description,
+      'purchaseLedgers': instance.purchaseLedgers,
+      'remarks': instance.remarks,
       'isActive': instance.isActive,
       'createdDate': instance.createdDate,
       'createdBy': instance.createdBy,
-      'UpdatedDate': instance.updatedDate,
-      'UpdatedBy': instance.updatedBy,
+      'updatedDate': instance.updatedDate,
+      'updatedBy': instance.updatedBy,
     };

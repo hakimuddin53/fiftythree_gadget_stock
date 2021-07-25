@@ -27,16 +27,16 @@ class StockStatusResponseModel extends Object {
 
 @JsonSerializable()
 class StockStatus extends Object {
-  @JsonKey(name: 'Id')
+  @JsonKey(name: 'id')
   String id;
 
-  @JsonKey(name: 'Name')
+  @JsonKey(name: 'name')
   String name;
 
-  @JsonKey(name: 'Description')
+  @JsonKey(name: 'description')
   String description;
 
-  @JsonKey(name: 'Remarks')
+  @JsonKey(name: 'remarks')
   String remarks;
 
   @JsonKey(name: 'isActive')
@@ -48,10 +48,10 @@ class StockStatus extends Object {
   @JsonKey(name: 'createdBy')
   String createdBy;
 
-  @JsonKey(name: 'UpdatedDate')
+  @JsonKey(name: 'updatedDate')
   String updatedDate;
 
-  @JsonKey(name: 'UpdatedBy')
+  @JsonKey(name: 'updatedBy')
   String updatedBy;
 
   StockStatus(this.id, this.name, this.description, this.remarks, this.isActive,

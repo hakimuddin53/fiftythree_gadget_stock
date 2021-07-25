@@ -67,6 +67,12 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
     FocusScope.of(context).requestFocus(nextFocus);
   }
 
+  void fieldFocusChange(
+      BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
+    currentFocus.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
+  }
+
   void showLoadingView(bool show) {
     setState(() {
       absorbing = show;

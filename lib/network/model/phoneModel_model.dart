@@ -4,8 +4,8 @@ part 'phoneModel_model.g.dart';
 
 @JsonSerializable()
 class PhoneModelResponseModel extends Object {
-  @JsonKey(name: 'message')
-  String message;
+  @JsonKey(name: 'phoneModel')
+  List<PhoneModel> phoneModel;
 
   @JsonKey(name: 'result_code')
   String resultCode;
@@ -14,7 +14,7 @@ class PhoneModelResponseModel extends Object {
   String resultDescription;
 
   PhoneModelResponseModel(
-    this.message,
+    this.phoneModel,
     this.resultCode,
     this.resultDescription,
   );
@@ -27,16 +27,16 @@ class PhoneModelResponseModel extends Object {
 
 @JsonSerializable()
 class PhoneModel extends Object {
-  @JsonKey(name: 'Id')
+  @JsonKey(name: 'id')
   String id;
 
-  @JsonKey(name: 'Name')
+  @JsonKey(name: 'name')
   String name;
 
-  @JsonKey(name: 'Description')
+  @JsonKey(name: 'description')
   String description;
 
-  @JsonKey(name: 'Remarks')
+  @JsonKey(name: 'remarks')
   String remarks;
 
   @JsonKey(name: 'isActive')
@@ -48,10 +48,10 @@ class PhoneModel extends Object {
   @JsonKey(name: 'createdBy')
   String createdBy;
 
-  @JsonKey(name: 'UpdatedDate')
+  @JsonKey(name: 'updatedDate')
   String updatedDate;
 
-  @JsonKey(name: 'UpdatedBy')
+  @JsonKey(name: 'updatedBy')
   String updatedBy;
 
   PhoneModel(this.id, this.name, this.description, this.remarks, this.isActive,

@@ -4,8 +4,8 @@ part 'colour_model.g.dart';
 
 @JsonSerializable()
 class ColourResponseModel extends Object {
-  @JsonKey(name: 'message')
-  String message;
+  @JsonKey(name: 'colour')
+  List<Colour> colour;
 
   @JsonKey(name: 'result_code')
   String resultCode;
@@ -14,7 +14,7 @@ class ColourResponseModel extends Object {
   String resultDescription;
 
   ColourResponseModel(
-    this.message,
+    this.colour,
     this.resultCode,
     this.resultDescription,
   );
@@ -27,16 +27,16 @@ class ColourResponseModel extends Object {
 
 @JsonSerializable()
 class Colour extends Object {
-  @JsonKey(name: 'Id')
+  @JsonKey(name: 'id')
   String id;
 
-  @JsonKey(name: 'Name')
+  @JsonKey(name: 'name')
   String name;
 
-  @JsonKey(name: 'Description')
+  @JsonKey(name: 'description')
   String description;
 
-  @JsonKey(name: 'Remarks')
+  @JsonKey(name: 'remarks')
   String remarks;
 
   @JsonKey(name: 'isActive')
@@ -48,10 +48,10 @@ class Colour extends Object {
   @JsonKey(name: 'createdBy')
   String createdBy;
 
-  @JsonKey(name: 'UpdatedDate')
+  @JsonKey(name: 'updatedDate')
   String updatedDate;
 
-  @JsonKey(name: 'UpdatedBy')
+  @JsonKey(name: 'updatedBy')
   String updatedBy;
 
   Colour(this.id, this.name, this.description, this.remarks, this.isActive,

@@ -9,7 +9,9 @@ part of 'phoneModel_model.dart';
 PhoneModelResponseModel _$PhoneModelResponseModelFromJson(
     Map<String, dynamic> json) {
   return PhoneModelResponseModel(
-    json['message'] as String,
+    (json['phoneModel'] as List<dynamic>)
+        .map((e) => PhoneModel.fromJson(e as Map<String, dynamic>))
+        .toList(),
     json['result_code'] as String,
     json['result_description'] as String,
   );
@@ -18,34 +20,34 @@ PhoneModelResponseModel _$PhoneModelResponseModelFromJson(
 Map<String, dynamic> _$PhoneModelResponseModelToJson(
         PhoneModelResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
+      'phoneModel': instance.phoneModel,
       'result_code': instance.resultCode,
       'result_description': instance.resultDescription,
     };
 
 PhoneModel _$PhoneModelFromJson(Map<String, dynamic> json) {
   return PhoneModel(
-    json['Id'] as String,
-    json['Name'] as String,
-    json['Description'] as String,
-    json['Remarks'] as String,
+    json['id'] as String,
+    json['name'] as String,
+    json['description'] as String,
+    json['remarks'] as String,
     json['isActive'] as bool,
     json['createdDate'] as String,
     json['createdBy'] as String,
-    json['UpdatedDate'] as String,
-    json['UpdatedBy'] as String,
+    json['updatedDate'] as String,
+    json['updatedBy'] as String,
   );
 }
 
 Map<String, dynamic> _$PhoneModelToJson(PhoneModel instance) =>
     <String, dynamic>{
-      'Id': instance.id,
-      'Name': instance.name,
-      'Description': instance.description,
-      'Remarks': instance.remarks,
+      'id': instance.id,
+      'name': instance.name,
+      'description': instance.description,
+      'remarks': instance.remarks,
       'isActive': instance.isActive,
       'createdDate': instance.createdDate,
       'createdBy': instance.createdBy,
-      'UpdatedDate': instance.updatedDate,
-      'UpdatedBy': instance.updatedBy,
+      'updatedDate': instance.updatedDate,
+      'updatedBy': instance.updatedBy,
     };

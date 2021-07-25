@@ -1,3 +1,4 @@
+import 'package:fiftythree_gadget_stock/network/model/purchaseledger_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'purchaseType_model.g.dart';
@@ -27,17 +28,20 @@ class PurchaseTypeResponseModel extends Object {
 
 @JsonSerializable()
 class PurchaseType extends Object {
-  @JsonKey(name: 'Id')
-  String id;
+  @JsonKey(name: 'id')
+  int id;
 
-  @JsonKey(name: 'Name')
+  @JsonKey(name: 'name')
   String name;
 
-  @JsonKey(name: 'Description')
+  @JsonKey(name: 'description')
   String description;
 
-  @JsonKey(name: 'Remarks')
-  String remarks;
+  @JsonKey(name: 'purchaseLedgers')
+  List<PurchaseLedger> purchaseLedgers;
+
+  @JsonKey(name: 'remarks')
+  String? remarks;
 
   @JsonKey(name: 'isActive')
   bool isActive;
@@ -48,16 +52,17 @@ class PurchaseType extends Object {
   @JsonKey(name: 'createdBy')
   String createdBy;
 
-  @JsonKey(name: 'UpdatedDate')
-  String updatedDate;
+  @JsonKey(name: 'updatedDate')
+  String? updatedDate;
 
-  @JsonKey(name: 'UpdatedBy')
-  String updatedBy;
+  @JsonKey(name: 'updatedBy')
+  String? updatedBy;
 
   PurchaseType(
       this.id,
       this.name,
       this.description,
+      this.purchaseLedgers,
       this.remarks,
       this.isActive,
       this.createdDate,

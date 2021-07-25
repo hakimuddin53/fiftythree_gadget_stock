@@ -27,43 +27,40 @@ class StockResponseModel extends Object {
 
 @JsonSerializable()
 class Stock extends Object {
-  @JsonKey(name: 'Id')
+  @JsonKey(name: 'id')
   String id;
 
-  @JsonKey(name: 'PurchaseLedgerId')
+  @JsonKey(name: 'purchaseLedgerId')
   String purchaseLedgerId;
 
-  @JsonKey(name: 'Imei_Number')
+  @JsonKey(name: 'imei_Number')
   String imeiNumber;
 
-  @JsonKey(name: 'PhoneModelId')
+  @JsonKey(name: 'phoneModelId')
   int phoneModelId;
 
-  @JsonKey(name: 'ColourId')
+  @JsonKey(name: 'colourId')
   int colourId;
 
-  @JsonKey(name: 'StorageId')
+  @JsonKey(name: 'storageId')
   int storageId;
 
-  @JsonKey(name: 'Cost_Price')
+  @JsonKey(name: 'cost_Price')
   String costPrice;
 
-  @JsonKey(name: 'Retail_Price')
+  @JsonKey(name: 'retail_Price')
   String retailPrice;
 
-  @JsonKey(name: 'Dealer_Price')
+  @JsonKey(name: 'dealer_Price')
   String dealerPrice;
 
-  @JsonKey(name: 'IsLock')
+  @JsonKey(name: 'isLock')
   bool isLock;
 
-  @JsonKey(name: 'InWarranty')
-  bool inWarranty;
-
-  @JsonKey(name: 'WarrantyExpiryDate')
+  @JsonKey(name: 'warrantyExpiryDate')
   String warrantyExpiryDate;
 
-  @JsonKey(name: 'Remarks')
+  @JsonKey(name: 'remarks')
   String remarks;
 
   @JsonKey(name: 'isActive')
@@ -75,10 +72,10 @@ class Stock extends Object {
   @JsonKey(name: 'createdBy')
   String createdBy;
 
-  @JsonKey(name: 'UpdatedDate')
+  @JsonKey(name: 'updatedDate')
   String updatedDate;
 
-  @JsonKey(name: 'UpdatedBy')
+  @JsonKey(name: 'updatedBy')
   String updatedBy;
 
   Stock(
@@ -92,7 +89,6 @@ class Stock extends Object {
       this.retailPrice,
       this.dealerPrice,
       this.isLock,
-      this.inWarranty,
       this.warrantyExpiryDate,
       this.remarks,
       this.isActive,
