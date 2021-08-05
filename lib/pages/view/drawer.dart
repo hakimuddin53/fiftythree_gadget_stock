@@ -27,7 +27,7 @@ class AppDrawer extends StatelessWidget {
               onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       settings: RouteSettings(name: "/PurchaseLedger"),
-                      builder: (context) => PurchaseLedger(),
+                      builder: (context) => PurchaseLedgerPage(),
                     ),
                   )),
           _createDrawerItem(

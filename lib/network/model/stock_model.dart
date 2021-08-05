@@ -55,7 +55,7 @@ class Stock extends Object {
   String dealerPrice;
 
   @JsonKey(name: 'isLock')
-  bool isLock;
+  String isLock;
 
   @JsonKey(name: 'warrantyExpiryDate')
   String warrantyExpiryDate;
@@ -64,7 +64,7 @@ class Stock extends Object {
   String remarks;
 
   @JsonKey(name: 'isActive')
-  bool isActive;
+  String isActive;
 
   @JsonKey(name: 'createdDate')
   String createdDate;

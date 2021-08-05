@@ -17,9 +17,9 @@ class ColourPageModel extends Object {
     this.desc,
   );
 }
-
-class StockPageModel extends Object {
-  final String description;
-
-  StockPageModel(this.description);
-}
+//
+// class StockPageModel extends Object {
+//   final String description;
+//
+//   StockPageModel(this.description);
+// }

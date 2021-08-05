@@ -32,13 +32,13 @@ class PurchaseLedger extends Object {
   String id;
 
   @JsonKey(name: 'purchaseTypeId')
-  String purchaseTypeId;
+  int purchaseTypeId;
 
   @JsonKey(name: 'pv_Ref')
   String pvRef;
 
   @JsonKey(name: 'dealerId')
-  String dealerId;
+  int dealerId;
 
   @JsonKey(name: 'dealer_Inv_Ref')
   String dealerInvRef;
@@ -62,7 +62,7 @@ class PurchaseLedger extends Object {
   String remarks;
 
   @JsonKey(name: 'isActive')
-  bool isActive;
+  String isActive;
 
   @JsonKey(name: 'createdDate')
   String createdDate;

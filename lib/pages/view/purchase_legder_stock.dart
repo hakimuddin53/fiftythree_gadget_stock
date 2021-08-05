@@ -86,24 +86,14 @@ class _PurchaseLedgerStockState extends BasePageState<PurchaseLedgerStock> {
                         onPrimary: Colors.white, // foreground
                       ),
                       onPressed: () {
-                        // test();
-                        // Navigator.of(context).push(
-                        //   MaterialPageRoute(
-                        //     settings:
-                        //     RouteSettings(name: "/CustomTimePickerDemo"),
-                        //     builder: (context) =>
-                        //         CustomTimePickerDemo(_selectedDay),
-                        //   ),
-                        // );
-
-                        // StockPageModel argument = StockPageModel(_pageController
-                        //     .warrantyExpiryDateEditingController.text);
-                        //
-                        // Navigator.of(context)
-                        //     .pushNamed('/Stock', arguments: argument);
-
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (_) => MyHome()));
+                        _pageController.addStocks(
+                            _pageController.imeiNumberEditingController.text,
+                            _pageController.isLockEditingController.text,
+                            _pageController.colourEditingController.text,
+                            _pageController
+                                .getColourSingleSearch(_pageController
+                                    .colourEditingController.text)
+                                .id);
                       },
                       child: Text(
                         'Add Device',
@@ -258,13 +248,6 @@ class _PurchaseLedgerStockState extends BasePageState<PurchaseLedgerStock> {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) async {
       _pageController.addIsLock();
-
-      // _stocks.A
-
-      // showLoadingView(true);
-      // await _pageController.initData(
-      //     widget.argument.isNewBatch, widget.argument.batchItem);
-      // showLoadingView(false);
     });
   }
 

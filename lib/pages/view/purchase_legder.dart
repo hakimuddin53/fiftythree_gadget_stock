@@ -1,28 +1,35 @@
 import 'package:fiftythree_gadget_stock/components/ui_style.dart';
+import 'package:fiftythree_gadget_stock/data/purchase_ledger_repo.dart';
+import 'package:fiftythree_gadget_stock/data/result.dart';
 import 'package:fiftythree_gadget_stock/model/purchase_ledger_page_model.dart';
+import 'package:fiftythree_gadget_stock/network/model/purchaseledger_model.dart';
 import 'package:fiftythree_gadget_stock/network/model/stock_model.dart';
 import 'package:fiftythree_gadget_stock/pages/controllers/puchase_ledger_controller.dart';
+import 'package:fiftythree_gadget_stock/pages/controllers/puchase_ledger_controller_stock.dart';
 import 'package:fiftythree_gadget_stock/pages/view/purchase_legder_stock.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
+import 'package:uuid/uuid.dart';
 
 import 'base_page_state.dart';
 
-class PurchaseLedger extends StatefulWidget {
-  const PurchaseLedger({Key? key}) : super(key: key);
+class PurchaseLedgerPage extends StatefulWidget {
+  const PurchaseLedgerPage({Key? key}) : super(key: key);
 
   @override
-  _PurchaseLedgerState createState() => _PurchaseLedgerState();
+  _PurchaseLedgerPageState createState() => _PurchaseLedgerPageState();
 }
 
-class _PurchaseLedgerState extends BasePageState<PurchaseLedger> {
+class _PurchaseLedgerPageState extends BasePageState<PurchaseLedgerPage> {
   final _formKey = GlobalKey<FormState>();
-
-  late ValueNotifier<List<Stock>> _stock;
 
   final PurchaseLedgerController _pageController =
       Get.put(PurchaseLedgerController());
+
+  final PurchaseLedgerStockController _pageControllerStock =
+      Get.put(PurchaseLedgerStockController());
 
   @override
   Widget build(BuildContext context) {
@@ -305,117 +312,234 @@ class _PurchaseLedgerState extends BasePageState<PurchaseLedger> {
                   ),
                 ),
               ),
-              Expanded(
-                child: ValueListenableBuilder<List<Stock>>(
-                  valueListenable: _stock,
-                  builder: (context, value, _) {
-                    return ListView.builder(
-                      itemCount: value.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          margin: const EdgeInsets.symmetric(
-                            horizontal: 12.0,
-                            vertical: 4.0,
-                          ),
-                          // decoration: BoxDecoration(
-                          //   border: Border.all(),
-                          //   borderRadius: BorderRadius.circular(12.0),
-                          // ),
-                          child: ListTile(
-                            onTap: () => {
-                              //_deleteBooking(value[index], value, index),
-                            },
-                            title: Row(
-                              children: <Widget>[
-                                Text(
-                                  '${value[index].imeiNumber}',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Expanded(
-                                    child: Text(
-                                  '${value[index].retailPrice}' +
-                                      " - " +
-                                      '${value[index].dealerPrice}',
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                )),
-                                InkWell(
-                                  onTap: () => {
-                                    // _deleteBooking(value[index], value, index),
-                                  },
-                                  child: Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 10.0,
-                                        right: 10.0,
-                                        bottom: 0,
-                                        top: 0),
-                                    child: Icon(
-                                      Icons.delete,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            // Text('${value[index].userName}'),
-                            subtitle:
-                                Text('${value[index].warrantyExpiryDate}'),
-                          ),
-                        );
-                      },
-                    );
+              Obx(
+                () => ListView.separated(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: _pageControllerStock.stocks.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    StockPageModel u = _pageControllerStock.stocks[index];
+                    return _listTileScanCon(u);
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox.shrink();
                   },
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(right: 10.0, bottom: 20, top: 10),
-                child: Align(
-                  alignment: FractionalOffset.bottomRight,
-                  child: Container(
-                    height: 40,
-                    width: 100,
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.green, // background
-                        onPrimary: Colors.white, // foreground
-                      ),
-                      onPressed: () {
-                        // test();
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      child: Container(
+                        margin: const EdgeInsets.only(
+                            right: 10.0, bottom: 20, top: 10),
+                        child: Align(
+                          alignment: FractionalOffset.bottomRight,
+                          child: Container(
+                            height: 40,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.green[800], // background
+                                onPrimary: Colors.white, // foreground
+                              ),
+                              onPressed: () async {
+                                var uuid = Uuid();
 
-                        // StockPageModel argument = StockPageModel(_pageController
-                        //     .itemDescriptionEditingController.text);
+                                var purchaseLedgerId = uuid.v1();
 
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            settings:
-                                RouteSettings(name: "/PurchaseLedgerStock"),
-                            builder: (context) => PurchaseLedgerStock(),
+                                List<Stock> stocks = <Stock>[];
+
+                                _pageControllerStock.stocks
+                                    .forEach((StockPageModel u) {
+                                  stocks.add(Stock(
+                                      uuid.v1(),
+                                      purchaseLedgerId,
+                                      u.imeiNumber,
+                                      _pageController
+                                          .getPhoneModelSingleSearch(
+                                              _pageController
+                                                  .phoneModelEditingController
+                                                  .text)
+                                          .id,
+                                      u.colourId,
+                                      123, //storage id
+                                      _pageController
+                                          .costPriceEditingController.text,
+                                      _pageController
+                                          .retailPriceEditingController.text,
+                                      _pageController
+                                          .dealerPriceEditingController.text,
+                                      _pageController
+                                          .conditionEditingController.text,
+                                      u.lockStatus,
+                                      "",
+                                      "2021-08-05",
+                                      "",
+                                      "Y",
+                                      "2021-08-05",
+                                      ""));
+                                });
+
+                                var purchaseLedger = PurchaseLedger(
+                                    purchaseLedgerId,
+                                    _pageController
+                                        .getPurchaseTypeSingleSearch(
+                                            _pageController
+                                                .purchaseTypeEditingController
+                                                .text)
+                                        .id,
+                                    _pageController.pvRefEditingController.text,
+                                    _pageController
+                                        .getDealerSingleSearch(_pageController
+                                            .dealerEditingController.text)
+                                        .id,
+                                    _pageController
+                                        .dealerInvRefEditingController.text,
+                                    _pageController
+                                        .amountEditingController.text,
+                                    int.parse(_pageController
+                                        .quantityEditingController.text),
+                                    _pageController
+                                        .itemDescriptionEditingController.text,
+                                    _pageController
+                                        .conditionEditingController.text,
+                                    stocks,
+                                    "",
+                                    "2021-08-05",
+                                    "",
+                                    "Y",
+                                    "2021-08-05",
+                                    "");
+
+                                Result resultApi = await PurchaseLedgerRepo()
+                                    .savePurchaseLedger(purchaseLedger);
+                              },
+                              child: Text(
+                                'Save',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 25),
+                              ),
+                            ),
                           ),
-                        );
-
-                        // Navigator.of(context).pushNamed('/PurchaseLedgerStock');
-
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (_) => MyHome()));
-                      },
-                      child: Text(
-                        'Next',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.only(
+                          right: 10.0, bottom: 20, top: 10),
+                      child: Align(
+                        alignment: FractionalOffset.bottomRight,
+                        child: Container(
+                          height: 40,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: Colors.greenAccent,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.lightGreen[500], // background
+                              onPrimary: Colors.white, // foreground
+                            ),
+                            onPressed: () {
+                              // test();
+
+                              // StockPageModel argument = StockPageModel(_pageController
+                              //     .itemDescriptionEditingController.text);
+
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  settings: RouteSettings(
+                                      name: "/PurchaseLedgerStock"),
+                                  builder: (context) => PurchaseLedgerStock(),
+                                ),
+                              );
+
+                              // Navigator.of(context).pushNamed('/PurchaseLedgerStock');
+
+                              // Navigator.push(context,
+                              //     MaterialPageRoute(builder: (_) => MyHome()));
+                            },
+                            child: Text(
+                              'Next',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 25),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ]),
           ),
         ],
       ),
     );
+  }
+
+  Widget _listTileScanCon(StockPageModel model) {
+    return Card(
+      margin: const EdgeInsets.symmetric(
+        horizontal: 12.0,
+        vertical: 4.0,
+      ),
+      // decoration: BoxDecoration(
+      //   border: Border.all(),
+      //   borderRadius: BorderRadius.circular(12.0),
+      // ),
+      child: ListTile(
+        onTap: () => {
+          //_deleteBooking(value[index], value, index),
+        },
+        title: Row(
+          children: <Widget>[
+            Text(
+              '${model.imeiNumber}',
+              textAlign: TextAlign.left,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Expanded(
+                child: Text(
+              '${model.colour}' + " - " + '${model.lockStatus}',
+              textAlign: TextAlign.right,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            )),
+            InkWell(
+              onTap: () => {
+                // _deleteBooking(value[index], value, index),
+              },
+              child: Container(
+                margin: const EdgeInsets.only(
+                    left: 10.0, right: 10.0, bottom: 0, top: 0),
+                child: Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                ),
+              ),
+            ),
+          ],
+        ),
+
+        // Text('${value[index].userName}'),
+        subtitle: Text('${model.colour}'),
+      ),
+    );
+    // return ListTile(
+    //     title: Text(model.imeiNumber, style: TextStyle(fontSize: 14)),
+    //     trailing: IconButton(
+    //       icon: Icon(Icons.remove_circle),
+    //       onPressed: () => print("didChangePlatformBrightness"),
+    //     ));
   }
 
   Widget _phoneModelAutoCompleteWidget() {
@@ -693,7 +817,11 @@ class _PurchaseLedgerState extends BasePageState<PurchaseLedger> {
       _pageController.pvRefEditingController.text = "PV-0621-065";
       _pageController.addCondition();
 
-      // _stocks.A
+      // _stocks.clear();
+      //
+      // _stocks.add(StockPageModel("", "", ""));
+      //
+      // _stockListener = ValueNotifier(_getStocks());
 
       // showLoadingView(true);
       // await _pageController.initData(
@@ -701,6 +829,10 @@ class _PurchaseLedgerState extends BasePageState<PurchaseLedger> {
       // showLoadingView(false);
     });
   }
+
+  // List<StockPageModel> _getStocks() {
+  //   return _stocks;
+  // }
 
   @override
   void dispose() {

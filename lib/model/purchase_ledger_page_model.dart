@@ -43,7 +43,10 @@ class DealerPageModel extends Object {
 }
 
 class StockPageModel extends Object {
-  final String description;
+  final String imeiNumber;
+  final String lockStatus;
+  final String colour;
+  final int colourId;
 
-  StockPageModel(this.description);
+  StockPageModel(this.imeiNumber, this.lockStatus, this.colour, this.colourId);
 }

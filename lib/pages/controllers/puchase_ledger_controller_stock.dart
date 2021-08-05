@@ -1,10 +1,12 @@
 import 'package:fiftythree_gadget_stock/data/purchase_ledger_stock_repo.dart';
 import 'package:fiftythree_gadget_stock/data/result.dart';
+import 'package:fiftythree_gadget_stock/model/purchase_ledger_page_model.dart';
 import 'package:fiftythree_gadget_stock/model/purchase_ledger_stock_page_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PurchaseLedgerStockController extends GetxController {
+  RxList<StockPageModel> stocks = <StockPageModel>[].obs;
   List<ColourPageModel> colourAutoComplete = <ColourPageModel>[];
   List<IsLockPageModel> isLockAutoComplete = <IsLockPageModel>[];
 
@@ -56,10 +58,22 @@ class PurchaseLedgerStockController extends GetxController {
     try {
       isLockAutoComplete.clear();
 
-      isLockAutoComplete.add(IsLockPageModel("New"));
-      isLockAutoComplete.add(IsLockPageModel("Used"));
+      isLockAutoComplete.add(IsLockPageModel("Yes"));
+      isLockAutoComplete.add(IsLockPageModel("No"));
     } catch (exception, stackTrace) {
       isLockAutoComplete = [];
+      // CrashReport().logError(
+      //     FlutterErrorDetails(exception: exception, stack: stackTrace));
+    }
+  }
+
+  void addStocks(
+      String imeiNumber, String lockStatus, String colour, int colourId) {
+    try {
+      stocks.clear();
+
+      stocks.add(StockPageModel(imeiNumber, lockStatus, colour, colourId));
+    } catch (exception, stackTrace) {
       // CrashReport().logError(
       //     FlutterErrorDetails(exception: exception, stack: stackTrace));
     }

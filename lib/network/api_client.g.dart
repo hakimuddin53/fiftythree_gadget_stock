@@ -89,6 +89,22 @@ class _ApiClient implements ApiClient {
     return value;
   }
 
+  @override
+  Future<PurchaseLedgerResponseModel> savePurchaseLedger(purchaseLedger) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(purchaseLedger.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<PurchaseLedgerResponseModel>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'api/user/savePurchaseLedger',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = PurchaseLedgerResponseModel.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

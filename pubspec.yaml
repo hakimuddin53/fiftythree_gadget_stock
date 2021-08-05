@@ -45,6 +45,7 @@ dependencies:
   simple_gesture_detector: ^0.2.0
   simple_autocomplete_formfield: ^0.3.0
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

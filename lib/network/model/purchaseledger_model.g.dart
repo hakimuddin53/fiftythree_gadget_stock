@@ -26,9 +26,9 @@ Map<String, dynamic> _$PurchaseLedgerResponseModelToJson(
 PurchaseLedger _$PurchaseLedgerFromJson(Map<String, dynamic> json) {
   return PurchaseLedger(
     json['id'] as String,
-    json['purchaseTypeId'] as String,
+    json['purchaseTypeId'] as int,
     json['pv_Ref'] as String,
-    json['dealerId'] as String,
+    json['dealerId'] as int,
     json['dealer_Inv_Ref'] as String,
     json['amount'] as String,
     json['units'] as int,
@@ -38,7 +38,7 @@ PurchaseLedger _$PurchaseLedgerFromJson(Map<String, dynamic> json) {
         .map((e) => Stock.fromJson(e as Map<String, dynamic>))
         .toList(),
     json['remarks'] as String,
-    json['isActive'] as bool,
+    json['isActive'] as String,
     json['createdDate'] as String,
     json['createdBy'] as String,
     json['updatedDate'] as String,
